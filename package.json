@@ -1,0 +1,9 @@
+{
+  "name": "pcm-align-mixer",
+  "version": "1.0.0",
+  "description": "浏览器本地 PCM16 多轨整数采样对齐与混音（不上传音频）",
+  "private": true,
+  "scripts": {
+    "test": "node --test"
+  }
+}

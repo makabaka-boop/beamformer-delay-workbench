@@ -1,0 +1,107 @@
+* { box-sizing: border-box; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC",
+    "Microsoft YaHei", sans-serif;
+  margin: 0;
+  background: #f5f6f8;
+  color: #1f2430;
+  line-height: 1.55;
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 20px 64px;
+}
+
+h1 { font-size: 1.5rem; margin-bottom: 4px; }
+h2 { font-size: 1.15rem; margin: 28px 0 8px; }
+
+.privacy {
+  background: #e8f3ff;
+  border: 1px solid #b9d7f5;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.92rem;
+}
+
+.hint { color: #5b6472; font-size: 0.88rem; }
+
+.import-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 18px 0;
+}
+
+.file-button {
+  display: inline-block;
+  background: #2563eb;
+  color: #fff;
+  padding: 9px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.92rem;
+  text-decoration: none;
+  border: none;
+  user-select: none;
+}
+.file-button:hover { background: #1d4fd7; }
+
+.status { color: #5b6472; font-size: 0.9rem; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+th, td {
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid #eef0f3;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+th { background: #eef2f8; font-weight: 600; }
+td.filename { white-space: normal; word-break: break-all; max-width: 220px; }
+
+td input[type="number"] {
+  width: 92px;
+  padding: 4px 6px;
+  border: 1px solid #c8ced8;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+td input.overridden { border-color: #2563eb; background: #f0f5ff; }
+
+.auto-cell { color: #2563eb; font-variant-numeric: tabular-nums; }
+
+button.reset-btn {
+  background: #eef0f3;
+  border: 1px solid #c8ced8;
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 0.82rem;
+}
+button.reset-btn:hover { background: #e0e4ea; }
+button.reset-btn[disabled] { color: #a8aeb8; cursor: default; }
+
+audio { width: 100%; margin: 8px 0 14px; }
+
+.error {
+  margin-top: 20px;
+  background: #fdecec;
+  border: 1px solid #f3b4b4;
+  color: #a02020;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+}

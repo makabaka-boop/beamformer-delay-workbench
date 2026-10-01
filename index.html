@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PCM16 多轨对齐混音（本地处理）</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main>
+  <h1>PCM16 多轨对齐混音</h1>
+  <p class="privacy">
+    所有解析、相关分析、对齐与合成均在本机浏览器（Web Worker）内完成，
+    <strong>音频不会上传到任何服务器</strong>。建议通过
+    <code>python3 -m http.server</code> 打开本页面。
+  </p>
+
+  <section class="import-bar">
+    <label class="file-button">
+      导入 2～6 路 WAV（同采样率 · 单声道 · PCM16）
+      <input id="fileInput" type="file" accept=".wav,audio/wav,audio/x-wav" multiple hidden>
+    </label>
+    <span id="status" class="status">尚未导入音轨</span>
+  </section>
+
+  <section id="trackSection" hidden>
+    <h2>各路参数</h2>
+    <p class="hint">
+      延时单位为整数采样（d&gt;0 表示该路相对第 1 路右移）；增益按
+      0.25（四分之一）步进。修改任一参数会取消旧分析/合成并重新合成。
+    </p>
+    <table id="trackTable">
+      <thead>
+        <tr>
+          <th>#</th><th>文件</th><th>采样数</th><th>时长(s)</th>
+          <th>自动延时</th><th>延时覆写</th><th>增益(×)</th><th></th>
+        </tr>
+      </thead>
+      <tbody id="trackRows"></tbody>
+    </table>
+  </section>
+
+  <section id="outputSection" hidden>
+    <h2>试听与下载</h2>
+    <p class="hint">试听与 WAV 下载使用<strong>同一个合成缓冲</strong>。</p>
+    <audio id="player" controls preload="auto"></audio>
+    <div>
+      <a id="downloadLink" class="file-button" download="mix.wav">下载合成 WAV</a>
+    </div>
+    <p id="mixInfo" class="status"></p>
+  </section>
+
+  <p id="errorBox" class="error" hidden></p>
+</main>
+
+<script src="core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
