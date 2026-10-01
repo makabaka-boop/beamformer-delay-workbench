@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>多轨 PCM16 本地对齐合成</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; margin: 0; padding: 24px; background: #f6f7f9; color: #1c2330; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  .sub { color: #66707f; font-size: 13px; margin-bottom: 18px; }
+  .card { background: #fff; border: 1px solid #e3e7ee; border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; max-width: 920px; }
+  .row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  button, .file-btn { font: inherit; padding: 7px 16px; border-radius: 7px; border: 1px solid #c4ccd8; background: #fff; cursor: pointer; }
+  button:hover, .file-btn:hover { background: #f0f3f8; }
+  button:disabled { opacity: .45; cursor: not-allowed; }
+  button.primary { background: #2f6fed; border-color: #2f6fed; color: #fff; }
+  button.primary:hover { background: #285fd0; }
+  input[type=file] { display: none; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #eef1f5; }
+  th { color: #5b6675; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .03em; }
+  input[type=number] { width: 86px; font: inherit; padding: 4px 6px; border: 1px solid #c4ccd8; border-radius: 6px; }
+  .auto { color: #2f7d4f; font-family: ui-monospace, monospace; }
+  .badge { display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 99px; background: #eef3ff; color: #2f6fed; margin-left: 6px; }
+  #status { font-size: 13px; min-height: 20px; color: #444d5c; }
+  #status.error { color: #c0392b; }
+  #status.busy { color: #2f6fed; }
+  .muted { color: #8a93a2; font-size: 12px; }
+  .gain-wrap { display: flex; align-items: center; gap: 6px; }
+</style>
+</head>
+<body>
+  <h1>多轨 PCM16 本地对齐合成</h1>
+  <div class="sub">所有音频仅在浏览器内解析与计算（Web Worker），不会上传。需导入 2～6 路采样率相同的单声道 16-bit PCM WAV。</div>
+
+  <div class="card">
+    <div class="row">
+      <label class="file-btn">
+        导入 WAV（2～6 路）
+        <input id="fileInput" type="file" accept=".wav,audio/wav,audio/x-wav" multiple>
+      </label>
+      <button id="playBtn" class="primary" disabled>试听</button>
+      <button id="stopBtn" disabled>停止</button>
+      <button id="downloadBtn" disabled>下载合成 WAV</button>
+    </div>
+    <div id="status" style="margin-top:10px"></div>
+    <div class="muted" id="meta"></div>
+  </div>
+
+  <div class="card" id="tracksCard" hidden>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th><th>文件名</th><th>时长</th>
+          <th>延时（采样，−32～32）</th>
+          <th>增益（1/4 步进，0～4）</th>
+        </tr>
+      </thead>
+      <tbody id="trackRows"></tbody>
+    </table>
+    <p class="muted" style="margin:10px 0 0">正延时：该轨相对基准延后（开头补零）；负延时：提前（结尾补零）。勾选覆写后可手动指定延时；增益以 0.25 为步进。</p>
+  </div>
+
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>

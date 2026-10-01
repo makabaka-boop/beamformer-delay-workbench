@@ -1,0 +1,10 @@
+{
+  "name": "pcm-align-mix",
+  "version": "1.0.0",
+  "description": "浏览器本地多轨 PCM16 整数延时对齐与合成（不上传音频）",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --test"
+  }
+}
